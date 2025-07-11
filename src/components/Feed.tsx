@@ -5,8 +5,9 @@ import { chainsToTwitter, twitterAbi } from "@/constant";
 import axios from "axios";
 import { Abi } from "viem";
 import { useChainId, useReadContract, useReadContracts } from "wagmi";
+import LikePost from "./LikePost";
 
-interface Tweet {
+export interface Tweet {
   id: bigint;
   author: string;
   contentCID: string;
@@ -140,23 +141,7 @@ export default function Feed() {
                 <span className="text-sm">12</span>
               </button>
 
-              <button className="flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill={tweet.likes > 0 ? "currentColor" : "none"}
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
-                <span className="text-sm">{tweet.likes.toString()}</span>
-              </button>
+              <LikePost tweet={tweet} />
 
               <button className="flex items-center gap-1 text-gray-500 hover:text-blue-500 transition-colors">
                 <svg
