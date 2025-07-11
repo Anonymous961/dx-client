@@ -1,12 +1,12 @@
-interface ContractConfig {
-    [chainId: number]: string
+export interface ContractConfig {
+    [chainId: number]: `0x${string}`
 }
 
-const chainsToTwitter: ContractConfig = {
+export const chainsToTwitter: ContractConfig = {
     31337: "0x5fbdb2315678afecb367f032d93f642f64180aa3"
 }
 
-const twitterAbi = [
+export const twitterAbi = [
     {
         "type": "function",
         "name": "createTweet",

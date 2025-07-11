@@ -1,13 +1,24 @@
 "use client";
 
+import { chainsToTwitter, twitterAbi } from "@/constant";
 import axios from "axios";
 import { useState } from "react";
-import { useWriteContract } from "wagmi";
+import { useChainId, useWriteContract } from "wagmi";
 
 const TweetField = () => {
   const [tweetContent, setTweetContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { writeContract } = useWriteContract();
+  const chainId = useChainId();
+
+  const handleTweetTransaction = async (cid: string) => {
+    writeContract({
+      abi: twitterAbi,
+      address: chainsToTwitter[chainId],
+      functionName: "createTweet",
+      args: [cid],
+    });
+  };
 
   const handleTweet = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +36,8 @@ const TweetField = () => {
       console.log("Tweet data:", tweetData);
       const res = await axios.post("/api/jsonUpload", tweetData);
       console.log("Response from API:", res.data);
-      alert("Tweet posted successfully!");
+      const cid = res.data.cid;
+      await handleTweetTransaction(cid);
     } catch (error) {
       console.error("Error posting tweet:", error);
     } finally {
