@@ -7,15 +7,17 @@ import Feed from "./Feed";
 export default function HomeContent() {
   const { isConnected } = useAccount();
   return (
-    <div className="gap-4">
+    <div className=" flex flex-col justify-center  gap-4">
       {isConnected ? (
-        <div className="flex flex-col gap-4">
+        <div className=" gap-4">
           <TweetField />
-          <Feed />
         </div>
       ) : (
-        <div>Please connect to wallet</div>
+        <div className="border-2 border-white p-4 rounded-xl m-4 bg-gray-500 text-red-600">
+          Please connect to wallet
+        </div>
       )}
+      <Feed />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import axios from "axios";
 import { Abi } from "viem";
 import { useChainId, useReadContract, useReadContracts } from "wagmi";
 import LikePost from "./LikePost";
+import { formatDistanceToNow } from "date-fns";
 
 export interface Tweet {
   id: bigint;
@@ -74,25 +75,21 @@ export default function Feed() {
         return (
           <div
             key={index}
-            className="p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-gray-900"
+            className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-gray-900"
           >
             {/* Author Info */}
             <div className="flex items-center gap-3 mb-3">
               <img
-                src="https://xsgames.co/randomusers/avatar.php?g=pixel"
+                src={`https://xsgames.co/randomusers/avatar.php?g=pixel&seed=${tweet.author}`}
                 alt="Avatar"
                 className="w-10 h-10 rounded-full"
               />
               <div>
                 <p className="font-semibold text-white">{tweet.author}</p>
                 <p className="text-xs text-gray-500">
-                  {new Date(Number(tweet.timestamp) * 1000).toLocaleDateString(
-                    "en-US",
-                    {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    }
+                  {formatDistanceToNow(
+                    new Date(Number(tweet.timestamp) * 1000),
+                    { addSuffix: true }
                   )}
                 </p>
               </div>

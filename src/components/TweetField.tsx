@@ -49,7 +49,7 @@ const TweetField = () => {
 
   return (
     <form
-      className="p-4 border rounded-xl border-gray-200 bg-gray-900"
+      className="p-4 border rounded-xl hover:border-gray-200 bg-gray-900"
       onSubmit={handleTweet}
     >
       <div className="flex items-center gap-2">
@@ -63,7 +63,7 @@ const TweetField = () => {
           value={tweetContent}
           onChange={(e) => setTweetContent(e.target.value)}
           placeholder="What's happening?"
-          className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
         />
       </div>
       <button

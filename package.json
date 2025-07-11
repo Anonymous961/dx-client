@@ -12,6 +12,7 @@
     "@rainbow-me/rainbowkit": "^2.2.8",
     "@tanstack/react-query": "^5.81.5",
     "axios": "^1.10.0",
+    "date-fns": "^4.1.0",
     "next": "15.3.5",
     "pinata": "^2.4.9",
     "react": "^19.0.0",
